@@ -3,7 +3,7 @@ root : expr EOF ;
 
 expr : EOF;
 
-NUM : [0 - 9]+;
+NUM : [0-9]+;
 
 MAS : '+';
 

@@ -1,4 +1,4 @@
-// Generated from c:/Users/lugor/OneDrive/Documentos/Lenguajes y Automatas 2/comp2/Programa1/Expr.g4 by ANTLR 4.13.1
+// Generated from c:/Users/lugor/OneDrive/Documentos/Lenguajes y Automatas 2/comp2/Programas_1-10_archivo/Programa1/Expr.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
