@@ -16,9 +16,11 @@ public class ExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		PUBLIC=1, CLASS=2, STATIC=3, VOID=4, MAIN=5, STRING=6, INT=7, IMPRIMIR=8, 
-		IF=9, LLA_IZQ=10, LLA_DER=11, PAR_IZQ=12, PAR_DER=13, COR_IZQ=14, COR_DER=15, 
-		ASIGN=16, MAS=17, SEMICOL=18, MAYOR=19, CADENA=20, NUM=21, IDF=22, WS=23;
+		CREATE=1, INSERT=2, INTO=3, TABLE=4, VALUES=5, SERIAL=6, PRIMARY=7, KEY=8, 
+		VARCHAR=9, NOT=10, NULL=11, INTEGER=12, DATE=13, SELECT=14, FROM=15, INNER=16, 
+		JOIN=17, WHERE=18, LLA_IZQ=19, LLA_DER=20, PAR_IZQ=21, PAR_DER=22, COR_IZQ=23, 
+		COR_DER=24, ASIGN=25, SEMICOL=26, COMA=27, PUNTO=28, COMILLA=29, STRING=30, 
+		NUM=31, ID=32, ALIAS=33, WS=34;
 	public static final int
 		RULE_root = 0, RULE_expr = 1;
 	private static String[] makeRuleNames() {
@@ -30,17 +32,20 @@ public class ExprParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'public'", "'class'", "'static'", "'void'", "'main'", "'String'", 
-			"'int'", "'System.out.println'", "'if'", "'{'", "'}'", "'('", "')'", 
-			"'['", "']'", "'='", "'+'", "';'", "'>'"
+			null, "'CREATE'", "'INSERT'", "'INTO'", "'TABLE'", "'VALUES'", "'SERIAL'", 
+			"'PRIMARY'", "'KEY'", "'VARCHAR'", "'NOT'", "'NULL'", "'INTEGER'", "'DATE'", 
+			"'SELECT'", "'FROM'", "'INNER'", "'JOIN'", "'WHERE'", "'{'", "'}'", "'('", 
+			"')'", "'['", "']'", "'='", "';'", "','", "'.'", "'''"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "PUBLIC", "CLASS", "STATIC", "VOID", "MAIN", "STRING", "INT", "IMPRIMIR", 
-			"IF", "LLA_IZQ", "LLA_DER", "PAR_IZQ", "PAR_DER", "COR_IZQ", "COR_DER", 
-			"ASIGN", "MAS", "SEMICOL", "MAYOR", "CADENA", "NUM", "IDF", "WS"
+			null, "CREATE", "INSERT", "INTO", "TABLE", "VALUES", "SERIAL", "PRIMARY", 
+			"KEY", "VARCHAR", "NOT", "NULL", "INTEGER", "DATE", "SELECT", "FROM", 
+			"INNER", "JOIN", "WHERE", "LLA_IZQ", "LLA_DER", "PAR_IZQ", "PAR_DER", 
+			"COR_IZQ", "COR_DER", "ASIGN", "SEMICOL", "COMA", "PUNTO", "COMILLA", 
+			"STRING", "NUM", "ID", "ALIAS", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -131,8 +136,7 @@ public class ExprParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ExprContext extends ParserRuleContext {
-		public TerminalNode NUM() { return getToken(ExprParser.NUM, 0); }
-		public TerminalNode IDF() { return getToken(ExprParser.IDF, 0); }
+		public TerminalNode EOF() { return getToken(ExprParser.EOF, 0); }
 		public ExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -142,20 +146,11 @@ public class ExprParser extends Parser {
 	public final ExprContext expr() throws RecognitionException {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_expr);
-		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(7);
-			_la = _input.LA(1);
-			if ( !(_la==NUM || _la==IDF) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -170,13 +165,13 @@ public class ExprParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0017\n\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0001"+
+		"\u0004\u0001\"\n\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0001"+
 		"\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0000"+
-		"\u0000\u0002\u0000\u0002\u0000\u0001\u0001\u0000\u0015\u0016\u0007\u0000"+
-		"\u0004\u0001\u0000\u0000\u0000\u0002\u0007\u0001\u0000\u0000\u0000\u0004"+
-		"\u0005\u0003\u0002\u0001\u0000\u0005\u0006\u0005\u0000\u0000\u0001\u0006"+
-		"\u0001\u0001\u0000\u0000\u0000\u0007\b\u0007\u0000\u0000\u0000\b\u0003"+
-		"\u0001\u0000\u0000\u0000\u0000";
+		"\u0000\u0002\u0000\u0002\u0000\u0000\u0007\u0000\u0004\u0001\u0000\u0000"+
+		"\u0000\u0002\u0007\u0001\u0000\u0000\u0000\u0004\u0005\u0003\u0002\u0001"+
+		"\u0000\u0005\u0006\u0005\u0000\u0000\u0001\u0006\u0001\u0001\u0000\u0000"+
+		"\u0000\u0007\b\u0005\u0000\u0000\u0001\b\u0003\u0001\u0000\u0000\u0000"+
+		"\u0000";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

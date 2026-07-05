@@ -2,17 +2,26 @@ grammar Expr;
 
 root: expr EOF ;    
 
-expr: NUM | IDF ;
+expr: EOF;
 
-PUBLIC: 'public';
-CLASS: 'class';
-STATIC: 'static';
-VOID: 'void';
-MAIN: 'main';
-STRING: 'String';
-INT: 'int';
-IMPRIMIR: 'System.out.println';
-IF: 'if';
+CREATE: 'CREATE';
+INSERT: 'INSERT';
+INTO: 'INTO';
+TABLE: 'TABLE';
+VALUES: 'VALUES';
+SERIAL: 'SERIAL';
+PRIMARY: 'PRIMARY';
+KEY: 'KEY';
+VARCHAR: 'VARCHAR';
+NOT: 'NOT';
+NULL: 'NULL';
+INTEGER: 'INTEGER';
+DATE: 'DATE';
+SELECT: 'SELECT';
+FROM: 'FROM';
+INNER: 'INNER';
+JOIN: 'JOIN';
+WHERE: 'WHERE';
 
 LLA_IZQ: '{';
 LLA_DER: '}';
@@ -21,12 +30,14 @@ PAR_DER: ')';
 COR_IZQ: '[';
 COR_DER: ']';
 ASIGN: '=';
-MAS: '+';
 SEMICOL: ';';
-MAYOR: '>';
+COMA: ',';
+PUNTO: '.';
+COMILLA: '\'';
 
-CADENA: '"' ~["\r\n]+ '"';
+STRING: COMILLA (~['])* COMILLA;
 NUM: [0-9]+ ;
-IDF: [a-zA-Z]+ ;
+ID: [a-zA-Z_][a-zA-Z0-9_]*;
+ALIAS: ID* PUNTO;
 
 WS: [ \t\r\n]+ -> skip ;

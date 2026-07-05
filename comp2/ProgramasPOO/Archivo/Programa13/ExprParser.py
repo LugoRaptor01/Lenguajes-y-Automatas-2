@@ -10,9 +10,9 @@ else:
 
 def serializedATN():
     return [
-        4,1,23,10,2,0,7,0,2,1,7,1,1,0,1,0,1,0,1,1,1,1,1,1,0,0,2,0,2,0,1,
-        1,0,21,22,7,0,4,1,0,0,0,2,7,1,0,0,0,4,5,3,2,1,0,5,6,5,0,0,1,6,1,
-        1,0,0,0,7,8,7,0,0,0,8,3,1,0,0,0,0
+        4,1,34,10,2,0,7,0,2,1,7,1,1,0,1,0,1,0,1,1,1,1,1,1,0,0,2,0,2,0,0,
+        7,0,4,1,0,0,0,2,7,1,0,0,0,4,5,3,2,1,0,5,6,5,0,0,1,6,1,1,0,0,0,7,
+        8,5,0,0,1,8,3,1,0,0,0,0
     ]
 
 class ExprParser ( Parser ):
@@ -25,16 +25,20 @@ class ExprParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'public'", "'class'", "'static'", "'void'", 
-                     "'main'", "'String'", "'int'", "'System.out.println'", 
-                     "'if'", "'{'", "'}'", "'('", "')'", "'['", "']'", "'='", 
-                     "'+'", "';'", "'>'" ]
+    literalNames = [ "<INVALID>", "'CREATE'", "'INSERT'", "'INTO'", "'TABLE'", 
+                     "'VALUES'", "'SERIAL'", "'PRIMARY'", "'KEY'", "'VARCHAR'", 
+                     "'NOT'", "'NULL'", "'INTEGER'", "'DATE'", "'SELECT'", 
+                     "'FROM'", "'INNER'", "'JOIN'", "'WHERE'", "'{'", "'}'", 
+                     "'('", "')'", "'['", "']'", "'='", "';'", "','", "'.'", 
+                     "'''" ]
 
-    symbolicNames = [ "<INVALID>", "PUBLIC", "CLASS", "STATIC", "VOID", 
-                      "MAIN", "STRING", "INT", "IMPRIMIR", "IF", "LLA_IZQ", 
-                      "LLA_DER", "PAR_IZQ", "PAR_DER", "COR_IZQ", "COR_DER", 
-                      "ASIGN", "MAS", "SEMICOL", "MAYOR", "CADENA", "NUM", 
-                      "IDF", "WS" ]
+    symbolicNames = [ "<INVALID>", "CREATE", "INSERT", "INTO", "TABLE", 
+                      "VALUES", "SERIAL", "PRIMARY", "KEY", "VARCHAR", "NOT", 
+                      "NULL", "INTEGER", "DATE", "SELECT", "FROM", "INNER", 
+                      "JOIN", "WHERE", "LLA_IZQ", "LLA_DER", "PAR_IZQ", 
+                      "PAR_DER", "COR_IZQ", "COR_DER", "ASIGN", "SEMICOL", 
+                      "COMA", "PUNTO", "COMILLA", "STRING", "NUM", "ID", 
+                      "ALIAS", "WS" ]
 
     RULE_root = 0
     RULE_expr = 1
@@ -42,29 +46,40 @@ class ExprParser ( Parser ):
     ruleNames =  [ "root", "expr" ]
 
     EOF = Token.EOF
-    PUBLIC=1
-    CLASS=2
-    STATIC=3
-    VOID=4
-    MAIN=5
-    STRING=6
-    INT=7
-    IMPRIMIR=8
-    IF=9
-    LLA_IZQ=10
-    LLA_DER=11
-    PAR_IZQ=12
-    PAR_DER=13
-    COR_IZQ=14
-    COR_DER=15
-    ASIGN=16
-    MAS=17
-    SEMICOL=18
-    MAYOR=19
-    CADENA=20
-    NUM=21
-    IDF=22
-    WS=23
+    CREATE=1
+    INSERT=2
+    INTO=3
+    TABLE=4
+    VALUES=5
+    SERIAL=6
+    PRIMARY=7
+    KEY=8
+    VARCHAR=9
+    NOT=10
+    NULL=11
+    INTEGER=12
+    DATE=13
+    SELECT=14
+    FROM=15
+    INNER=16
+    JOIN=17
+    WHERE=18
+    LLA_IZQ=19
+    LLA_DER=20
+    PAR_IZQ=21
+    PAR_DER=22
+    COR_IZQ=23
+    COR_DER=24
+    ASIGN=25
+    SEMICOL=26
+    COMA=27
+    PUNTO=28
+    COMILLA=29
+    STRING=30
+    NUM=31
+    ID=32
+    ALIAS=33
+    WS=34
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -121,11 +136,8 @@ class ExprParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def NUM(self):
-            return self.getToken(ExprParser.NUM, 0)
-
-        def IDF(self):
-            return self.getToken(ExprParser.IDF, 0)
+        def EOF(self):
+            return self.getToken(ExprParser.EOF, 0)
 
         def getRuleIndex(self):
             return ExprParser.RULE_expr
@@ -137,16 +149,10 @@ class ExprParser ( Parser ):
 
         localctx = ExprParser.ExprContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_expr)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 7
-            _la = self._input.LA(1)
-            if not(_la==21 or _la==22):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
+            self.match(ExprParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

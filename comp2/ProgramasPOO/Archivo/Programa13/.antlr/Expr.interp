@@ -1,14 +1,23 @@
 token literal names:
 null
-'public'
-'class'
-'static'
-'void'
-'main'
-'String'
-'int'
-'System.out.println'
-'if'
+'CREATE'
+'INSERT'
+'INTO'
+'TABLE'
+'VALUES'
+'SERIAL'
+'PRIMARY'
+'KEY'
+'VARCHAR'
+'NOT'
+'NULL'
+'INTEGER'
+'DATE'
+'SELECT'
+'FROM'
+'INNER'
+'JOIN'
+'WHERE'
 '{'
 '}'
 '('
@@ -16,9 +25,11 @@ null
 '['
 ']'
 '='
-'+'
 ';'
-'>'
+','
+'.'
+'\''
+null
 null
 null
 null
@@ -26,15 +37,24 @@ null
 
 token symbolic names:
 null
-PUBLIC
-CLASS
-STATIC
-VOID
-MAIN
-STRING
-INT
-IMPRIMIR
-IF
+CREATE
+INSERT
+INTO
+TABLE
+VALUES
+SERIAL
+PRIMARY
+KEY
+VARCHAR
+NOT
+NULL
+INTEGER
+DATE
+SELECT
+FROM
+INNER
+JOIN
+WHERE
 LLA_IZQ
 LLA_DER
 PAR_IZQ
@@ -42,12 +62,14 @@ PAR_DER
 COR_IZQ
 COR_DER
 ASIGN
-MAS
 SEMICOL
-MAYOR
-CADENA
+COMA
+PUNTO
+COMILLA
+STRING
 NUM
-IDF
+ID
+ALIAS
 WS
 
 rule names:
@@ -56,4 +78,4 @@ expr
 
 
 atn:
-[4, 1, 23, 10, 2, 0, 7, 0, 2, 1, 7, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 2, 0, 2, 0, 1, 1, 0, 21, 22, 7, 0, 4, 1, 0, 0, 0, 2, 7, 1, 0, 0, 0, 4, 5, 3, 2, 1, 0, 5, 6, 5, 0, 0, 1, 6, 1, 1, 0, 0, 0, 7, 8, 7, 0, 0, 0, 8, 3, 1, 0, 0, 0, 0]
+[4, 1, 34, 10, 2, 0, 7, 0, 2, 1, 7, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 2, 0, 2, 0, 0, 7, 0, 4, 1, 0, 0, 0, 2, 7, 1, 0, 0, 0, 4, 5, 3, 2, 1, 0, 5, 6, 5, 0, 0, 1, 6, 1, 1, 0, 0, 0, 7, 8, 5, 0, 0, 1, 8, 3, 1, 0, 0, 0, 0]

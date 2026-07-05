@@ -72,7 +72,7 @@ class AnalizadorLexico:
         print("-" * 70)
 
         # Imprimimos encabezados de la tabla
-        print(f"{'LEXEMA':<25} {'TOKEN':<15} {'TIPO':<6} {'LINEA':<6} {'COLUMNA':<8}")
+        print(f"{'LEXEMA':<35} {'TOKEN':<15} {'TIPO':<6} {'LINEA':<6} {'COLUMNA':<8}")
 
         # Imprimimos separador
         print("-" * 70)
@@ -90,7 +90,7 @@ class AnalizadorLexico:
             nombre = self.lexer.symbolicNames[token.type]
 
             # Imprimimos los datos del token
-            print(f"{token.text:<25} {nombre:<15} {token.type:<6} {token.line:<6} {token.column:<8}")
+            print(f"{token.text:<35} {nombre:<15} {token.type:<6} {token.line:<6} {token.column:<8}")
 
     # Metodo para imprimir errores lexicos
     def imprimir_errores(self):
