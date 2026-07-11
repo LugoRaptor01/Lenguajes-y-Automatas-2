@@ -6,7 +6,6 @@ expr: EOF;
 
 IF: 'if';
 ID: [a-zA-Z]+;
-
 MAYOR: '>';
 
 NUM: [0-9]+;
